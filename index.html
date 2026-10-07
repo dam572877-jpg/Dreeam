@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#04061c" />
+<title>DREAM HOUSE — إدارة عقارات الفيوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="toast" class="toast" role="status"></div>
+<div id="loginView" class="login-view">
+  <div class="login-glow"></div>
+  <section class="login-card">
+    <div class="brand-mark"><span>F</span></div>
+    <div class="eyebrow">DREAM HOUSE · REALTY MANAGEMENT</div>
+    <h1>DREAM HOUSE<br><b>إدارة عقارات الفيوم</b></h1>
+    <p>نظام احترافي لإدارة العقارات والعملاء والتقارير من الهاتف.</p>
+    <label>اسم المستخدم</label><input id="loginUser" value="admin" autocomplete="username">
+    <label>كلمة المرور</label><input id="loginPass" type="password" value="112203" autocomplete="current-password">
+    <button class="primary full" id="loginBtn">دخول إلى النظام <span>←</span></button>
+    <div class="login-note">بيانات الدخول: admin / 112203</div>
+  </section>
+</div>
+
+<div id="appView" class="app hidden">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark small"><span>D</span></div><div><strong>DREAM HOUSE</strong><small>REAL ESTATE · FAYOUM</small></div></div>
+    <div class="top-actions"><button class="icon-btn" id="themeInfo" title="حول النظام">ⓘ</button><button class="user-pill" id="logoutBtn">المدير <span>↪</span></button></div>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy"><div class="announcement">● DREAM HOUSE · نظام إدارة عقارات الفيوم</div><h2>كل عقاراتك.<br><span>في مكان واحد.</span></h2><p>إدارة، بحث، عملاء، وتقارير PDF جاهزة للمشاركة.</p></div>
+      <div class="hero-stat"><span>إجمالي الوحدات</span><strong id="heroCount">0</strong><small>عقار مسجل</small></div>
+    </section>
+
+    <nav class="nav-pills" id="navPills">
+      <button class="nav-pill active" data-section="dashboard">الرئيسية</button>
+      <button class="nav-pill" data-section="properties">العقارات</button>
+      <button class="nav-pill" data-section="clients">العملاء</button>
+      <button class="nav-pill" data-section="reports">التقارير</button>
+    </nav>
+
+    <section id="dashboard" class="section active-section">
+      <div class="section-head"><div><div class="eyebrow">OVERVIEW</div><h3>نظرة عامة</h3></div><button class="primary" id="addFromDash">+ إضافة عقار</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="dot blue"></span><small>كل العقارات</small><strong id="statAll">0</strong><em>وحدة</em></article>
+        <article class="stat-card"><span class="dot violet"></span><small>للبيع</small><strong id="statSale">0</strong><em>عرض</em></article>
+        <article class="stat-card"><span class="dot coral"></span><small>للإيجار</small><strong id="statRent">0</strong><em>عرض</em></article>
+        <article class="stat-card"><span class="dot green"></span><small>العملاء</small><strong id="statClients">0</strong><em>طلب نشط</em></article>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h4>أحدث العقارات</h4><span>آخر ما تم تسجيله في النظام</span></div><button class="ghost" data-go="properties">عرض الكل →</button></div><div id="recentProperties" class="property-list"></div></div>
+    </section>
+
+    <section id="properties" class="section">
+      <div class="section-head"><div><div class="eyebrow">PROPERTY INVENTORY</div><h3>العقارات</h3></div><button class="primary" id="addPropertyBtn">+ إضافة عقار</button></div>
+      <div class="category-tabs panel"><button class="category-tab active" data-property-category="">▦<span>كل العقارات</span><b id="allCount">0</b></button><button class="category-tab" data-property-category="شقق">▤<span>الشقق</span><b id="apartmentCount">0</b></button><button class="category-tab" data-property-category="عمارات">▥<span>العمارات</span><b id="buildingCount">0</b></button><button class="category-tab" data-property-category="أراضي">⌂<span>الأراضي</span><b id="landCount">0</b></button></div><div class="filters panel"><input id="propertySearch" placeholder="ابحث بالعنوان، المنطقة، المالك، التفاصيل..."><select id="typeFilter"><option value="">كل الأنواع</option><option>شقة</option><option>بيت</option><option>بيت مشاركة</option><option>عمارة</option><option>برج</option><option>محل</option><option>أرض</option><option>أرض مشاركة</option><option>أرض زراعية</option><option>أسهم</option><option>سطح</option><option>فيلا</option><option>مكتب</option></select><select id="purposeFilter"><option value="">الكل</option><option>بيع</option><option>إيجار</option></select><select id="areaFilter"><option value="">كل مناطق الفيوم</option><option>الفيوم</option><option>دله</option><option>المسلة</option><option>الحادقة</option><option>دار الرماد</option><option>الزملوطي</option><option>سنورس</option><option>إطسا</option><option>طامية</option><option>يوسف الصديق</option></select><button class="ghost" id="clearFilters">مسح</button></div>
+      <div class="bulkbar"><span><b id="selectedCount">0</b> محدد</span><button class="ghost" id="selectAll">تحديد الكل</button><button class="primary" id="pdfSelected">تصدير المحدد PDF</button></div>
+      <div id="propertiesList" class="property-grid"></div>
+    </section>
+
+    <section id="clients" class="section">
+      <div class="section-head"><div><div class="eyebrow">CLIENT CRM</div><h3>العملاء والطلبات</h3></div><button class="primary" id="addClientBtn">+ إضافة عميل</button></div>
+      <div class="panel client-search"><input id="clientSearch" placeholder="ابحث باسم العميل، الهاتف، الطلب..."> <select id="clientTypeFilter"><option value="">كل الطلبات</option><option>شقة</option><option>بيت</option><option>عمارة</option><option>محل</option><option>أرض</option><option>فيلا</option></select></div>
+      <div id="clientsList" class="client-grid"></div>
+    </section>
+
+    <section id="reports" class="section">
+      <div class="section-head"><div><div class="eyebrow">REPORT CENTER</div><h3>مركز التقارير</h3></div></div>
+      <div class="report-grid">
+        <article class="report-card"><div class="report-icon">▣</div><h4>تقرير عقارات مختارة</h4><p>اختر العقارات من قسم العقارات ثم أنشئ PDF منسق متعدد الصفحات.</p><button class="primary" id="reportSelected">إنشاء PDF</button></article>
+        <article class="report-card"><div class="report-icon">⌁</div><h4>تقرير كل العقارات</h4><p>ينشئ ملفًا كاملًا بكل العقارات المسجلة حاليًا.</p><button class="ghost" id="reportAll">تصدير الكل PDF</button></article>
+        <article class="report-card"><div class="report-icon">◎</div><h4>تقرير العملاء</h4><p>نسخة قابلة للطباعة من قاعدة العملاء والطلبات.</p><button class="ghost" id="reportClients">تصدير العملاء PDF</button></article>
+      </div>
+      <div class="panel report-rules"><h4>مواصفات PDF</h4><div class="rule"><span>01</span>يدعم العربية وRTL بالكامل</div><div class="rule"><span>02</span>صفحات A4 تلقائية حسب عدد السجلات</div><div class="rule"><span>03</span>لا يوجد حد 2 أو 4 أو 10 سجلات — التصدير يضم كل المحدد</div><div class="rule"><span>04</span>اسم الملف والتاريخ وعدد السجلات يضافون تلقائيًا</div></div>
+    </section>
+  </main>
+  <div class="floating-nav"><button data-section="dashboard">⌂<small>الرئيسية</small></button><button data-section="properties">⌂<small>العقارات</small></button><button data-section="clients">♙<small>العملاء</small></button><button data-section="reports">▤<small>PDF</small></button></div>
+</div>
+
+<div id="propertyModal" class="modal hidden"><div class="modal-card property-modal-card"><button class="modal-close" data-close="propertyModal">×</button><div class="eyebrow">PROPERTY RECORD</div><h3 id="propertyModalTitle">إضافة عقار</h3><div class="type-hint" id="propertyTypeHint">اختر نوع العقار، وسيظهر لك فقط الحقول الخاصة به.</div><form id="propertyForm"><input type="hidden" id="propertyId"><div class="form-grid"><label>اسم/عنوان العقار<input id="pTitle" required></label><label>نوع العقار<select id="pType"><option>شقة</option><option>بيت</option><option>عمارة</option><option>برج</option><option>أرض</option><option>أرض مشاركة</option><option>أرض زراعية</option><option>فيلا</option><option>محل</option><option>مكتب</option></select></label><label>المنطقة<input id="pArea" placeholder="دله، المسلة..." required></label><label>الغرض<select id="pPurpose"><option>بيع</option><option>إيجار</option></select></label><label>السعر<input id="pPrice" type="text" inputmode="decimal" required></label><label>المساحة بالمتر<input id="pSize" type="text" inputmode="decimal"></label></div>
+<div class="smart-fields" id="landFields"><div class="smart-title">🌿 بيانات الأرض</div><div class="form-grid"><label>الرخصة / الترخيص<select id="pLicense"><option value="">غير محدد</option><option>مرخصة</option><option>غير مرخصة</option><option>تحتاج ترخيص</option></select></label><label>الصلاحية / القانونية<input id="pLegal" placeholder="قانونية، تصالح، نموذج 8... "></label><label>الواجهة<select id="pFacade"><option value="">غير محدد</option><option>واجهة واحدة</option><option>واجهتان</option><option>3 واجهات</option><option>4 واجهات</option></select></label><label>ناصية<select id="pCorner"><option value="">غير محدد</option><option>نعم</option><option>لا</option></select></label><label>نوع الأرض<input id="pLandUse" placeholder="سكني، تجاري، زراعي..."></label><label>تفاصيل الموقع<input id="pLandLocation"></label></div></div>
+<div class="smart-fields" id="apartmentFields"><div class="smart-title">🏠 بيانات الشقة</div><div class="form-grid"><label>الدور<input id="pFloor"></label><label>البرج / العمارة<input id="pBuilding"></label><label>الأسانسير<select id="pElevator"><option value="">غير محدد</option><option>يوجد</option><option>لا يوجد</option></select></label><label>الغرف<input id="pRooms" type="number" min="0"></label><label>الحمامات<input id="pBaths" type="number" min="0"></label><label>المطبخ<input id="pKitchen" placeholder="مطبخ، أمريكان... "></label><label>الاستقبال<input id="pReception" placeholder="مثلاً 3 قطع"></label><label>التشطيب<input id="pFinish"></label><label>الرخصة / القانونية<input id="pApartmentLegal"></label></div></div>
+<div class="smart-fields" id="buildingFields"><div class="smart-title">🏢 بيانات العمارة</div><div class="form-grid"><label>عدد الأدوار<input id="pFloors"></label><label>الأسانسير<input id="pBuildingElevator"></label><label>عدد المحلات<input id="pShops"></label><label>العدادات<input id="pMeters"></label><label>الرخصة / الترخيص<input id="pBuildingLicense"></label><label>الصلاحية / القانونية<input id="pBuildingLegal"></label><label>الواجهة<input id="pBuildingFacade"></label><label>ناصية<input id="pBuildingCorner"></label><label>الروف / الملحق<input id="pRoof"></label></div></div>
+<div class="smart-fields" id="commonFields"><div class="smart-title">⚙️ بيانات عامة</div><div class="form-grid"><label>الحالة<select id="pStatus"><option>متاح</option><option>محجوز</option><option>مباع</option><option>مؤجر</option></select></label><label>المالك<input id="pOwner"></label><label>الهاتف<input id="pPhone" inputmode="tel"></label></div></div>
+<label>ملاحظات وتفاصيل إضافية<textarea id="pDesc" rows="4" placeholder="اكتب فقط التفاصيل الخاصة بهذا النوع من العقار..."></textarea></label><div class="modal-actions"><button type="button" class="ghost" data-close="propertyModal">إلغاء</button><button class="primary" type="submit">حفظ العقار</button></div></form></div></div>
+<div id="clientModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="clientModal">×</button><div class="eyebrow">CLIENT RECORD</div><h3>إضافة عميل</h3><form id="clientForm"><div class="form-grid"><label>اسم العميل<input id="cName" required></label><label>الهاتف<input id="cPhone" inputmode="tel" required></label><label>نوع المطلوب<select id="cType"><option>شقة</option><option>بيت</option><option>عمارة</option><option>محل</option><option>أرض</option><option>فيلا</option></select></label><label>الميزانية<input id="cBudget" type="number" min="0"></label><label>المنطقة المطلوبة<input id="cArea"></label><label>الحالة<select id="cStatus"><option>نشط</option><option>تم التعاقد</option><option>متوقف</option></select></label></div><label>ملاحظات<textarea id="cNotes" rows="4"></textarea></label><div class="modal-actions"><button type="button" class="ghost" data-close="clientModal">إلغاء</button><button class="primary" type="submit">حفظ العميل</button></div></form></div></div>
+
+<div id="pdfStage" aria-hidden="true"></div>
+<script src="pdf-engine.js"></script>
+<script src="imported-data.js"></script>
+<script src="app.js"></script>
+</body></html>
